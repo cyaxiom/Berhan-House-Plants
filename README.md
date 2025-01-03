@@ -7,7 +7,9 @@ Welcome to **Berhan-House-Plants**, your one-stop destination for all things hou
 ## Pages Overview
 
 ### **Home**
+
 The landing page that welcomes visitors to Abraham Houseplant.
+
 - 🌐 **Navbar**: Easy navigation to other pages.
 - 🌟 **Hero Header Section**: Engaging image and introduction to Abraham Houseplant.
 - 🌱 **Features List Section**: Highlight featured plants with images and descriptions.
@@ -19,7 +21,9 @@ The landing page that welcomes visitors to Abraham Houseplant.
 ---
 
 ### **Explore**
+
 Browse through plant categories and find your ideal houseplants.
+
 - 🌐 **Navbar**: Navigate through the site.
 - 🌟 **Header Section**: Introduction and invitation to explore.
 - 🌱 **Features List Section**: Showcase plant categories.
@@ -30,31 +34,29 @@ Browse through plant categories and find your ideal houseplants.
 ---
 
 ### **Shop**
+
 Dive into our collection of houseplants and related products.
+
 - 🌐 **Navbar**: Easy navigation.
 - 🛒 **Ecommerce Products List Section**: Products with images, names, prices, and descriptions.
-- 🖼️ **Ecommerce Product Header Section**: Detailed product view.
-- 📋 **Ecommerce Product Section**: Specifications, care instructions, reviews.
-- ➕ **CTA Form Section**: Add to Cart options.
-- 🌿 **Ecommerce Product Section**: Related products.
-- 🛍️ **CTA Section**: Checkout encouragement.
 - 🔗 **Footer**: Links and additional details.
 
 Sub-pages:
+
 - 🪴 **Product Detail**: Detailed view of individual plants.
-- 🛒 **Cart**: View and manage items.
-- 💳 **Checkout**: Secure payment and purchase completion.
-- ✅ **Order Confirmation**: Post-purchase summary.
+- 🖼️ **Ecommerce Product Header Section**: Detailed product view.
+- 📋 **Ecommerce Product Section**: Specifications, care instructions, reviews.
 
 ---
 
 ### **User Dashboard**
+
 Personalized space for users to manage their account and plants.
+
 - 🌐 **Navbar**: Quick access to pages.
 - 🌟 **Header Section**: Welcome message.
 - 📂 **Feature Sections**:
   - 👤 My Profile
-  - 📦 My Orders
   - 💖 Wishlist
   - ⚙️ Account Settings
   - 🌱 My Plants
@@ -62,8 +64,8 @@ Personalized space for users to manage their account and plants.
 - 🔗 **Footer**: Links and resources.
 
 Sub-pages:
+
 - 👤 **My Profile**: Update personal details.
-- 📦 **My Orders**: View and track orders.
 - 💖 **Wishlist**: Manage desired plants.
 - ⚙️ **Account Settings**: Update preferences.
 - 🌱 **My Plants**: View and care for owned plants.
@@ -72,18 +74,20 @@ Sub-pages:
 ---
 
 ### **Admin Dashboard**
+
 Comprehensive admin tools for managing the platform.
+
 - 🌐 **Navbar**: Navigate admin features.
 - 🌟 **Header Section**: Overview and quick stats.
 - 📂 **Features List Sections**:
   - 👥 Manage Users
   - 🛒 Manage Products
-  - 📦 Manage Orders
   - ✏️ Manage Content
   - 📊 Analytics and Settings
 - 🔗 **Footer**: Admin resources and links.
 
 Sub-pages:
+
 - 👥 **Manage Users**: Add, edit, and manage users.
 - 🛒 **Manage Products**: Manage product inventory and details.
 - 📦 **Manage Orders**: Oversee and update order statuses.
@@ -92,7 +96,9 @@ Sub-pages:
 ---
 
 ### **Contact**
+
 Get in touch with Abraham Houseplant.
+
 - 🌐 **Navbar**: Easy navigation.
 - 💌 **Contact Section**: Invitation to connect.
 - 📝 **Contact Form Section**: Submit inquiries.
@@ -102,7 +108,9 @@ Get in touch with Abraham Houseplant.
 ---
 
 ### **FAQ**
+
 Find answers to common questions.
+
 - 🌐 **Navbar**: Quick access to the FAQ.
 - 🌟 **Header Section**: Explanation of the FAQ’s purpose.
 - ❓ **FAQ Section**: Organized answers to frequently asked questions.
@@ -112,7 +120,9 @@ Find answers to common questions.
 ---
 
 ### **Plant Care**
+
 Comprehensive guide to keeping plants healthy and thriving.
+
 - 🌐 **Navbar**: Navigation menu.
 - 🌟 **Header Section**: Importance of plant care.
 - 🌿 **Feature Section**: General care tips.
@@ -126,4 +136,3 @@ Comprehensive guide to keeping plants healthy and thriving.
 ---
 
 This README serves as a roadmap for understanding the structure and functionality of the **Berhan-House-Plants** platform. Whether you're a developer, designer, or user, this document will guide you through the platform's features and help you make the most of your experience.
-
