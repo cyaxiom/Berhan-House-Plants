@@ -1,5 +1,11 @@
+import ScrollableBanner from "../ScrollableBanner/ScrollableBanner";
+
 function Banner() {
-  return <div>Banner</div>;
+  return (
+    <>
+      <ScrollableBanner />
+    </>
+  );
 }
 
 export default Banner;
