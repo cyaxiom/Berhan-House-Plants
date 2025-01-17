@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   FaSearch,
   FaUser,
@@ -40,13 +41,13 @@ function Navbar() {
 
   const renderLinks = () =>
     NAV_LINKS.map((link) => (
-      <a
+      <Link
         key={link.href}
-        href={link.href}
-        className="text-gray-700 hover:text-gray-900"
+        to={link.href}
+        className="text-gray-700 font-bold hover:text-gray-900"
       >
         {link.label}
-      </a>
+      </Link>
     ));
 
   const renderSelectOptions = (options) =>
@@ -57,12 +58,12 @@ function Navbar() {
     ));
 
   return (
-    <nav className="bg-[#EDF7ED] shadow-md">
+    <nav className="sticky top-0 z-50 bg-white/60 backdrop-blur-md shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Left: Logo */}
-          <a
-            href="/"
+          <Link
+            to={"/"}
             className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-1"
           >
             {/* Logo Image */}
@@ -78,7 +79,7 @@ function Navbar() {
               alt="Berhan house plant text logo"
               className="scale-90 md:scale-100"
             />
-          </a>
+          </Link>
 
           {/* Center: Navigation Links */}
           <div className="hidden md:flex space-x-6 items-center">
