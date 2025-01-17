@@ -38,14 +38,15 @@ Browse through plant categories and find your ideal houseplants.
 Dive into our collection of houseplants and related products.
 
 - 🌐 **Navbar**: Easy navigation.
+- 🛒 **Search**: Search and filter bar
 - 🛒 **Ecommerce Products List Section**: Products with images, names, prices, and descriptions.
 - 🔗 **Footer**: Links and additional details.
 
-Sub-pages:
+Sub-pages: for product
 
 - 🪴 **Product Detail**: Detailed view of individual plants.
 - 🖼️ **Ecommerce Product Header Section**: Detailed product view.
-- 📋 **Ecommerce Product Section**: Specifications, care instructions, reviews.
+- 📋 **Ecommerce Product Section**: Specifications and care instructions.
 
 ---
 
@@ -60,7 +61,6 @@ Personalized space for users to manage their account and plants.
   - 💖 Wishlist
   - ⚙️ Account Settings
   - 🌱 My Plants
-  - 📝 Plant Care History
 - 🔗 **Footer**: Links and resources.
 
 Sub-pages:
@@ -69,7 +69,6 @@ Sub-pages:
 - 💖 **Wishlist**: Manage desired plants.
 - ⚙️ **Account Settings**: Update preferences.
 - 🌱 **My Plants**: View and care for owned plants.
-- 📝 **Plant Care History**: Log and track plant care activities.
 
 ---
 
@@ -79,19 +78,17 @@ Comprehensive admin tools for managing the platform.
 
 - 🌐 **Navbar**: Navigate admin features.
 - 🌟 **Header Section**: Overview and quick stats.
-- 📂 **Features List Sections**:
-  - 👥 Manage Users
-  - 🛒 Manage Products
-  - ✏️ Manage Content
-  - 📊 Analytics and Settings
+  - 👥 **Manage Users**
+  - 🛒 **Manage Products**
+  - ✏️ **Manage Content**
+  - 📊 **Analytics and Settings**
 - 🔗 **Footer**: Admin resources and links.
 
 Sub-pages:
 
 - 👥 **Manage Users**: Add, edit, and manage users.
 - 🛒 **Manage Products**: Manage product inventory and details.
-- 📦 **Manage Orders**: Oversee and update order statuses.
-- ✏️ **Manage Content**: Handle blog posts, FAQs, images, and events.
+- ✏️ **Manage Content**: Handle plant care posts, FAQs, images, and events.
 
 ---
 

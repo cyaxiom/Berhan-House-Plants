@@ -1,238 +1,158 @@
-import { PrimaryButton } from "../z-index.component";
+import { useState, useEffect } from "react";
+import {
+  FaSearch,
+  FaUser,
+  FaBars,
+  FaTimes,
+  FaMoon,
+  FaSun,
+} from "react-icons/fa";
+import { NAV_LINKS, CURRENCIES, LANGUAGES } from "../../constants/constants";
+import { BHP_logo, BHP_text_logo } from "../../assets/Images";
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Check localStorage for the user's theme preference
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme) {
+      setIsDarkMode(savedTheme === "dark");
+    } else {
+      // Default to light mode if no preference is saved
+      setIsDarkMode(false);
+    }
+  }, []);
+
+  // Toggle between dark and light mode
+  const toggleTheme = () => {
+    const newTheme = !isDarkMode ? "dark" : "light";
+    setIsDarkMode(!isDarkMode);
+
+    // Save the theme preference in localStorage
+    localStorage.setItem("theme", newTheme);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const renderLinks = () =>
+    NAV_LINKS.map((link) => (
+      <a
+        key={link.href}
+        href={link.href}
+        className="text-gray-700 hover:text-gray-900"
+      >
+        {link.label}
+      </a>
+    ));
+
+  const renderSelectOptions = (options) =>
+    options.map((option) => (
+      <option key={option.value} value={option.value}>
+        {option.label}
+      </option>
+    ));
+
   return (
-    <div className="flex flex-col w-[100vw] items-center relative bg-[#ffffff] border-b [border-bottom-style:solid] border-[color:var(--semantic-border-primary)] overflow-x-hidden">
-      <div className="flex h-[72px] items-center justify-between px-16 py-0 relative self-stretch w-full border-b [border-bottom-style:solid] border-[color:var(--semantic-border-primary)]">
-        <div className="inline-flex items-center gap-6 relative flex-[0_0_auto]">
-          {/* <CompanyLogo className="!relative !w-[84px] !h-9" /> */}
-          <div className="inline-flex items-center gap-8 relative flex-[0_0_auto]">
-            <div className="relative w-fit bg-green-500">Link One</div>
+    <nav className="bg-[#EDF7ED] shadow-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 md:h-20">
+          {/* Left: Logo */}
+          <a
+            href="/"
+            className="text-2xl font-bold text-gray-800 dark:text-white flex items-center gap-1"
+          >
+            {/* Logo Image */}
+            <img
+              src={BHP_logo}
+              alt="Berhan house plant logo"
+              className="scale-90 md:scale-100"
+            />
 
-            <div className="relative w-fit bg-green-500">Link Two</div>
+            {/* Text Logo */}
+            <img
+              src={BHP_text_logo}
+              alt="Berhan house plant text logo"
+              className="scale-90 md:scale-100"
+            />
+          </a>
 
-            <div className="relative w-fit bg-green-500">Link Three</div>
+          {/* Center: Navigation Links */}
+          <div className="hidden md:flex space-x-6 items-center">
+            {renderLinks()}
+          </div>
 
-            <div className="inline-flex items-center justify-center gap-1 relative flex-[0_0_auto]">
-              <div className="relative w-fit bg-green-500">Link Four</div>
+          {/* Right: Currency, Language, Search, User, and Dark/Light Mode */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Currency Selector */}
+            <select
+              className="bg-gray-100 text-gray-700 p-2 rounded-md"
+              defaultValue="USD"
+            >
+              {renderSelectOptions(CURRENCIES)}
+            </select>
 
-              <img
-                className="relative w-6 h-6"
-                alt="Chevron down"
-                // src={chevronDown}
-              />
-            </div>
+            {/* Language Selector */}
+            <select
+              className="bg-gray-100 text-gray-700 p-2 rounded-md"
+              defaultValue="EN"
+            >
+              {renderSelectOptions(LANGUAGES)}
+            </select>
+
+            <button className="text-gray-700 hover:text-gray-900">
+              <FaSearch size={24} />
+            </button>
+            <button className="text-gray-700 hover:text-gray-900">
+              <FaUser size={24} />
+            </button>
+
+            {/* Dark/Light Mode Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="text-gray-700 hover:text-gray-900"
+            >
+              {isDarkMode ? <FaSun size={24} /> : <FaMoon size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile: Sandwich Button */}
+          <div className="flex items-center md:hidden">
+            <button
+              className="text-gray-700 hover:text-gray-900"
+              onClick={toggleMenu}
+            >
+              {menuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
           </div>
         </div>
 
-        <div className="inline-flex items-center justify-center gap-4 relative flex-[0_0_auto]">
-          {/* <Button
-          alternate={false}
-          className="!mt-[-1.00px] !ml-[-1.00px] !mb-[-1.00px] !flex-[0_0_auto]"
-          iconPosition="no-icon"
-          small
-          style="secondary"
-        />
-        <Button
-          alternate={false}
-          className={buttonStylePrimarySmallClassName}
-          divClassName={buttonDivClassName}
-          iconPosition="no-icon"
-          small
-          style="primary"
-        /> */}
-        </div>
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden bg-gray-100 dark:bg-gray-800 p-4 space-y-4">
+            {renderLinks()}
+            <div className="space-y-4">
+              <select
+                className="bg-gray-100 text-gray-700 p-2 rounded-md w-full"
+                defaultValue="USD"
+              >
+                {renderSelectOptions(CURRENCIES)}
+              </select>
+
+              <select
+                className="bg-gray-100 text-gray-700 p-2 rounded-md w-full"
+                defaultValue="EN"
+              >
+                {renderSelectOptions(LANGUAGES)}
+              </select>
+            </div>
+          </div>
+        )}
       </div>
-
-      <div className="flex w-[1440px] items-start relative flex-[0_0_auto]">
-        <div className="flex items-start gap-8 pl-16 pr-8 py-8 relative flex-1 grow">
-          <div className="flex flex-col items-start gap-4 relative flex-1 grow">
-            <div className="relative self-stretch mt-[-1.00px] font-text-small-semi-bold font-[number:var(--text-small-semi-bold-font-weight)] text-semantic-text-primary text-[length:var(--text-small-semi-bold-font-size)] tracking-[var(--text-small-semi-bold-letter-spacing)] leading-[var(--text-small-semi-bold-line-height)] [font-style:var(--text-small-semi-bold-font-style)]">
-              Page group one
-            </div>
-
-            <div className="inline-flex flex-col items-start gap-4 relative flex-[0_0_auto]">
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page One
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page Two
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page Three
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page Four
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-start gap-4 relative flex-1 grow">
-            <div className="relative self-stretch mt-[-1.00px] font-text-small-semi-bold font-[number:var(--text-small-semi-bold-font-weight)] text-semantic-text-primary text-[length:var(--text-small-semi-bold-font-size)] tracking-[var(--text-small-semi-bold-letter-spacing)] leading-[var(--text-small-semi-bold-line-height)] [font-style:var(--text-small-semi-bold-font-style)]">
-              Page group two
-            </div>
-
-            <div className="inline-flex flex-col items-start gap-4 relative flex-[0_0_auto]">
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page Five
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page Six
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page Seven
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex w-[376px] h-[61px] items-start gap-3 px-0 py-2 relative">
-                {/* <Relume className="!relative !w-6 !h-6" /> */}
-                <div className="flex flex-col items-start relative flex-1 grow">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-semantic-link-primary text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Page Eight
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col w-[560px] items-start gap-4 pl-8 pr-24 py-8 relative self-stretch bg-semantic-background-color-secondary">
-          <div className="relative self-stretch mt-[-1.00px] font-text-small-semi-bold font-[number:var(--text-small-semi-bold-font-weight)] text-semantic-text-primary text-[length:var(--text-small-semi-bold-font-size)] tracking-[var(--text-small-semi-bold-letter-spacing)] leading-[var(--text-small-semi-bold-line-height)] [font-style:var(--text-small-semi-bold-font-style)]">
-            Featured from Blog
-          </div>
-
-          <div className="flex flex-col items-start gap-2 relative self-stretch w-full flex-[0_0_auto]">
-            <div className="flex items-start gap-6 px-0 py-2 relative self-stretch w-full flex-[0_0_auto]">
-              <img
-                className="relative w-40 h-[105px] object-cover"
-                alt="Placeholder image"
-                // src={placeholderImage}
-              />
-
-              <div className="flex flex-col items-start gap-2 relative flex-1 grow">
-                <div className="flex flex-col items-start gap-1 relative self-stretch w-full flex-[0_0_auto]">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-[color:var(--primitive-color-neutral-black)] text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Article Title
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-
-                <div className="relative w-fit font-text-small-link font-[number:var(--text-small-link-font-weight)] text-semantic-link-primary text-[length:var(--text-small-link-font-size)] tracking-[var(--text-small-link-letter-spacing)] leading-[var(--text-small-link-line-height)] underline whitespace-nowrap [font-style:var(--text-small-link-font-style)]">
-                  Read more
-                </div>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-6 px-0 py-2 relative self-stretch w-full flex-[0_0_auto]">
-              <img
-                className="relative w-40 h-[105px] object-cover"
-                alt="Placeholder image"
-                // src={image}
-              />
-
-              <div className="flex flex-col items-start gap-2 relative flex-1 grow">
-                <div className="flex flex-col items-start gap-1 relative self-stretch w-full flex-[0_0_auto]">
-                  <div className="relative self-stretch mt-[-1.00px] font-text-regular-semi-bold font-[number:var(--text-regular-semi-bold-font-weight)] text-[color:var(--primitive-color-neutral-black)] text-[length:var(--text-regular-semi-bold-font-size)] tracking-[var(--text-regular-semi-bold-letter-spacing)] leading-[var(--text-regular-semi-bold-line-height)] [font-style:var(--text-regular-semi-bold-font-style)]">
-                    Article Title
-                  </div>
-
-                  <p className="relative self-stretch font-text-small-normal font-[number:var(--text-small-normal-font-weight)] text-semantic-text-primary text-[length:var(--text-small-normal-font-size)] tracking-[var(--text-small-normal-letter-spacing)] leading-[var(--text-small-normal-line-height)] [font-style:var(--text-small-normal-font-style)]">
-                    Lorem ipsum dolor sit amet consectetur elit
-                  </p>
-                </div>
-
-                <div className="relative w-fit font-text-small-link font-[number:var(--text-small-link-font-weight)] text-semantic-link-primary text-[length:var(--text-small-link-font-size)] tracking-[var(--text-small-link-letter-spacing)] leading-[var(--text-small-link-line-height)] underline whitespace-nowrap [font-style:var(--text-small-link-font-style)]">
-                  Read more
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* <Button
-          alternate={false}
-          className="!flex-[0_0_auto] !px-0 !py-1"
-          icon={buttonIcon}
-          iconPosition="trailing"
-          small={false}
-          style="link"
-        /> */}
-        </div>
-      </div>
-    </div>
+    </nav>
   );
 }
 
